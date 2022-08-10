@@ -1,0 +1,19 @@
+commit 25b6c206fdde9ee0523bdc8812bfa5b7dd55de77
+Author: okrag <48834705+okrag@users.noreply.github.com>
+Date:   Thu Aug 11 00:23:32 2022 +0200
+
+    patch 002 - modkey
+
+diff --git a/config.def.h b/config.def.h
+index 81a879c..4db3cf9 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -46,7 +46,7 @@ static const Layout layouts[] = {
+ };
+ 
+ /* key definitions */
+-#define MODKEY Mod1Mask
++#define MODKEY Mod4Mask
+ #define TAGKEYS(KEY,TAG) \
+ 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+ 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
