@@ -1,0 +1,52 @@
+commit af03488f2713549b8ac840c4ef0853f613c19bdd
+Author: okrag <48834705+okrag@users.noreply.github.com>
+Date:   Wed Aug 10 15:49:56 2022 +0200
+
+    patch 001 - shiftview
+
+diff --git a/addons/shiftview.c b/addons/shiftview.c
+new file mode 100644
+index 0000000..e82053a
+--- /dev/null
++++ b/addons/shiftview.c
+@@ -0,0 +1,19 @@
++/** Function to shift the current view to the left/right
++ *
++ * @param: "arg->i" stores the number of tags to shift right (positive value)
++ *          or left (negative value)
++ */
++void
++shiftview(const Arg *arg) {
++	Arg shifted;
++
++	if(arg->i > 0) // left circular shift
++		shifted.ui = (selmon->tagset[selmon->seltags] << arg->i)
++		   | (selmon->tagset[selmon->seltags] >> (LENGTH(tags) - arg->i));
++
++	else // right circular shift
++		shifted.ui = selmon->tagset[selmon->seltags] >> (- arg->i)
++		   | selmon->tagset[selmon->seltags] << (LENGTH(tags) + arg->i);
++
++	view(&shifted);
++}
+diff --git a/config.def.h b/config.def.h
+index 25ea088..81a879c 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -61,6 +61,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn()
+ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+ static const char *termcmd[]  = { "st", NULL };
+ 
++#include "addons/shiftview.c"
+ static Key keys[] = {
+ 	/* modifier                     key        function        argument */
+ 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+@@ -89,6 +90,8 @@ static Key keys[] = {
+ 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
+ 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
+ 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
++	{ MODKEY,                       XK_n,      shiftview,      {.i = +1 } },
++	{ MODKEY,                       XK_b,      shiftview,      {.i = -1 } },
+ 	TAGKEYS(                        XK_1,                      0)
+ 	TAGKEYS(                        XK_2,                      1)
+ 	TAGKEYS(                        XK_3,                      2)
