@@ -1,0 +1,57 @@
+commit 0a6934e9145fb754b5ac103bd08057015aee7f1f
+Author: okrag <48834705+okrag@users.noreply.github.com>
+Date:   Thu Aug 11 01:02:49 2022 +0200
+
+    patch 003 - betternames
+
+diff --git a/config.def.h b/config.def.h
+index 4db3cf9..0bceb12 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -1,22 +1,22 @@
+ /* See LICENSE file for copyright and license details. */
+ 
+ /* appearance */
+-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+-static const unsigned int gappx     = 5;        /* gaps between windows */
+-static const unsigned int snap      = 32;       /* snap pixel */
+-static const int showbar            = 1;        /* 0 means no bar */
+-static const int topbar             = 1;        /* 0 means bottom bar */
+-static const char *fonts[]          = { "monospace:size=10" };
+-static const char dmenufont[]       = "monospace:size=10";
+-static const char col_gray1[]       = "#222222";
+-static const char col_gray2[]       = "#444444";
+-static const char col_gray3[]       = "#bbbbbb";
+-static const char col_gray4[]       = "#eeeeee";
+-static const char col_cyan[]        = "#005577";
+-static const char *colors[][3]      = {
++static const unsigned int borderpx    = 1;        /* border pixel of windows */
++static const unsigned int gappx       = 5;        /* gaps between windows */
++static const unsigned int snap        = 32;       /* snap pixel */
++static const int showbar              = 1;        /* 0 means no bar */
++static const int topbar               = 1;        /* 0 means bottom bar */
++static const char *fonts[]            = { "monospace:size=10" };
++static const char dmenufont[]         = "monospace:size=10";
++static const char background_color[]  = "#222222";
++static const char inactive_border[]   = "#444444";
++static const char font_color[]        = "#bbbbbb";
++static const char active_font[]       = "#eeeeee";
++static const char active_background[] = "#005577";
++static const char *colors[][3]        = {
+ 	/*               fg         bg         border   */
+-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
++	[SchemeNorm] = { font_color, background_color, inactive_border },
++	[SchemeSel]  = { active_font, active_background,  active_background  },
+ };
+ 
+ /* tagging */
+@@ -58,7 +58,7 @@ static const Layout layouts[] = {
+ 
+ /* commands */
+ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
++static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", background_color, "-nf", font_color, "-sb", active_background, "-sf", active_font, NULL };
+ static const char *termcmd[]  = { "st", NULL };
+ 
+ #include "addons/shiftview.c"
