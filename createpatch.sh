@@ -5,7 +5,7 @@ if [ name == "" ]; then
   exit
 fi
 patches=$(ls patches/*.diff)
-lastpatch=$(printf "%s" "${patches##*\n}")
+lastpatch=$(echo "$patches" | tail -n1)
 lastpatch=${lastpatch:8:3}
 currentpatch="$(($lastpatch + 1))"
 
