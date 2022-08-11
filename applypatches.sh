@@ -2,10 +2,7 @@
 rm -rf src
 mkdir -p src
 cd src
-cp -r ../origin/* .
-git init
-git add .
-git commit -m "Init"
+git clone https://git.suckless.org/dwm .
 
 patch_error() {
   patchnumber=$0
