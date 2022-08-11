@@ -15,7 +15,7 @@ patch_error() {
   exit 1
 }
 
-patches=$(ls ../patches/*.diff)
+patches=$(ls ../patches/*.patch)
 for patch in $patches; do
   echo "========== applying \"patch ${patch:11:3} - ${patch:15:-5}\" =========="
   patch -p1 < $patch || patch_error ${patch:11:3} ${patch:15:-5}
